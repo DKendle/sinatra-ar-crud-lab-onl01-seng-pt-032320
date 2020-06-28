@@ -1,5 +1,6 @@
 
 require_relative '../../config/environment'
+require_relative '../models/article.rb'
 
 class ApplicationController < Sinatra::Base
 
@@ -9,5 +10,23 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+
+  end
+
+  get '/articles' do 
+    @articles = Article.all
+    erb :index
+  end
+
+  get '/show' do 
+
+  end
+
+  get '/articles/new' do
+    erb :new
+  end
+
+  post '/articles' do
+    @article1 = Article.create(title: params[:title], content: params[:content])
   end
 end
